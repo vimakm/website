@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пожарная безопасность</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f9;
+            color: #2c3e50;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Основной контент */
+        main {
+            flex: 1;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Блоки-кнопки */
+        .blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .block {
+            background: #fff;
+            border-radius: 14px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .block:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 26px rgba(0,0,0,0.14);
+            border-color: #e74c3c;
+        }
+
+        .block h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #c0392b;
+        }
+
+        .block p {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+        }
+
+        /* Телефоны */
+        .phones {
+            background: #fff;
+            border-radius: 14px;
+            padding: 30px 25px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .phones h2 {
+            color: #c0392b;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .phone-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .phone {
+            background: #fdf2f0;
+            border: 1px solid #f5c6c0;
+            border-radius: 10px;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #c0392b;
+            text-decoration: none;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .phone:hover {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        /* Подвал */
+        footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.5rem; }
+            .phone { font-size: 1rem; padding: 12px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Пожарная безопасность</h1>
+        <p>Свяжитесь с нами для консультации</p>
+    </header>
+
+    <main>
+        <!-- Три блока. Первый ведёт на сайт, два других пустые (заглушки) -->
+        <section class="blocks">
+            <!-- Блок с ссылкой (замените href на нужный адрес) -->
+            <a class="block" href="https://example.com" target="_blank" rel="noopener">
+                <h2>Пожарная безопасность</h2>
+                <p>Перейти на сайт →</p>
+            </a>
+
+            <!-- Пустой блок 1 -->
+            <div class="block">
+                <h2>Раздел 1</h2>
+                <p>Скоро здесь появится информация</p>
+            </div>
+
+            <!-- Пустой блок 2 -->
+            <div class="block">
+                <h2>Раздел 2</h2>
+                <p>Скоро здесь появится информация</p>
+            </div>
+        </section>
+
+        <!-- Телефоны -->
+        <section class="phones">
+            <h2>Наши телефоны</h2>
+            <div class="phone-list">
+                <a class="phone" href="tel:+79877387424">+7 (987) 738-74-24</a>
+                <a class="phone" href="tel:+79060383112">+7 (906) 038-31-12</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Пожарная безопасность. Все права защищены.
+    </footer>
+
+</body>
+</html>

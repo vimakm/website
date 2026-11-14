@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пожарная безопасность | Vimakm.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #0d1117;
+            overflow-x: hidden;
+        }
+
+        /* Живой, анимированный фон с датчиками и схемами */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(231, 76, 60, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(192, 57, 43, 0.15) 0%, transparent 40%),
+                linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background-size: cover;
+        }
+
+        /* Имитация инженерной схемы/датчиков на фоне */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle, black 40%, transparent 80%);
+        }
+
+        /* Анимированные "дымовые" пятна */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+        .blob-1 {
+            top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: #e74c3c;
+            animation: float 20s infinite alternate;
+        }
+        .blob-2 {
+            bottom: -10%; right: -10%; width: 40vw; height: 40vw;
+            background: #c0392b;
+            animation: float 25s infinite alternate-reverse;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 100px) scale(1.2); }
+        }
+
+        /* Шапка */
+        header {
+            position: relative;
+            background: rgba(20, 25, 35, 0.85);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+        }
+
+        .site-logo {
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #ffd700;
+            background: rgba(231, 76, 60, 0.2);
+            padding: 8px 24px;
+            border-radius: 30px;
+            border: 1px solid rgba(231, 76, 60, 0.5);
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .site-logo:hover {
+            background: rgba(231, 76, 60, 0.4);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(231, 76, 60, 0.6);
+        }
+
+        /* Основной контент */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Блоки */
+        .blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .block {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 220px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Эффект свечения при наведении на карточку */
+        .block::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+            pointer-events: none;
+        }
+
+        .block:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(231, 76, 60, 0.4);
+        }
+
+        .block:hover::before {
+            border-color: #e74c3c;
+        }
+
+        .block h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #c0392b;
+            position: relative;
+        }
+
+        .block p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Стили для картинки-схемы (имитация) */
+        .schematic-img {
+            width: 100%;
+            max-width: 400px;
+            height: 150px;
+            background: url('https://images.unsplash.com/photo-1558486012-817176f84c6d?q=80&w=600&auto=format&fit=crop') center/cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #ddd;
+            position: relative;
+        }
+        
+        /* Наложение эффекта "схемы" на картинку */
+        .schematic-img::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(231, 76, 60, 0.2);
+            border-radius: 8px;
+        }
+
+        /* Телефоны */
+        .phones {
+            background: rgba(20, 25, 35, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 40px 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .phones h2 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            text-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+        }
+
+        .phone-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .phone {
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.5);
+            border-radius: 12px;
+            padding: 16px 35px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .phone:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        /* Подвал */
+        footer {
+            background: #090c10;
+            color: #666;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.8rem; }
+            .site-logo { font-size: 1rem; padding: 6px 18px; }
+            .phone { font-size: 1rem; padding: 12px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Живой анимированный фон -->
+    <div class="animated-bg"></div>
+    <div class="bg-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <header>
+        <h1>Пожарная безопасность</h1>
+        <span class="site-logo">Vimakm.com</span>
+    </header>
+
+    <main>
+        <section class="blocks">
+            <!-- Блок 1 с картинкой и вашей ссылкой -->
+            <a class="block" href="https://kirakris.github.io/pojarka/" target="_blank" rel="noopener">
+                <div class="schematic-img" style="background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop');"></div>
+                <h2>Пуско-наладочные работы</h2>
+                <p>Программирование АПС, СОУЭ, АСУД, АОВ</p>
+            </a>
+
+            <!-- Пустой блок 1 -->
+            <div class="block">
+                <div class="schematic-img" style="background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=600&auto=format&fit=crop');"></div>
+                <h2>Проектирование систем</h2>
+                <p>Скоро здесь появится информация (Раздел в разработке)</p>
+            </div>
+
+            <!-- Пустой блок 2 -->
+            <div class="block">
+                <div class="schematic-img" style="background-image: url('https://images.unsplash.com/photo-1558486012-817176f84c6d?q=80&w=600&auto=format&fit=crop');"></div>
+                <h2>Техническое обслуживание</h2>
+                <p>Скоро здесь появится информация (Раздел в разработке)</p>
+            </div>
+        </section>
+
+        <!-- Телефоны -->
+        <section class="phones">
+            <h2>Связаться с нами</h2>
+            <div class="phone-list">
+                <a class="phone" href="tel:+79877387424">📞 +7 (987) 738-74-24</a>
+                <a class="phone" href="tel:+79060383112">📞 +7 (906) 038-31-12</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Vimakm.com. Все права защищены.
+    </footer>
+
+</body>
+</html>
